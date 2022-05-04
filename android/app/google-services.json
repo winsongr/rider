@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "671738279221",
+    "project_id": "w-foodapp",
+    "storage_bucket": "w-foodapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671738279221:android:0b20b293e7778844e0087c",
+        "android_client_info": {
+          "package_name": "com.winson.foodseller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671738279221-dd1fdfhof7omf54mpennn67equf54emt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSABI-LdUUrMzXAvR_SQ5Co6wyZMqE86c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671738279221-dd1fdfhof7omf54mpennn67equf54emt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671738279221:android:093347aa6e1dc8b9e0087c",
+        "android_client_info": {
+          "package_name": "com.winson.rider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671738279221-dd1fdfhof7omf54mpennn67equf54emt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSABI-LdUUrMzXAvR_SQ5Co6wyZMqE86c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671738279221-dd1fdfhof7omf54mpennn67equf54emt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
