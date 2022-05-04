@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:rider/auth/auth_screen.dart';
 import 'package:rider/global/global.dart';
- import 'package:rider/mainSceens/home_screen.dart';
+import 'package:rider/mainSceens/home_screen.dart';
 import 'package:rider/widgets/cus_textfield.dart';
 import 'package:rider/widgets/error_dialog.dart';
 import 'package:rider/widgets/loading_dialog.dart';
@@ -62,27 +63,45 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     if (currentUser != null) {
       {
-        readDataAndSetDataLocally(currentUser!).then((value) {
-          Navigator.pop(context);
-          Navigator.push(
-              context, MaterialPageRoute(builder: (c) => const HomeScreen()));
-        });
+        readDataAndSetDataLocally(currentUser!);
       }
     }
   }
 
-Future readDataAndSetDataLocally(User currentUser) async
-  {
-    await FirebaseFirestore.instance.collection("riders")
+  Future readDataAndSetDataLocally(User currentUser) async {
+    await FirebaseFirestore.instance
+        .collection("riders")
         .doc(currentUser.uid)
         .get()
         .then((snapshot) async {
-          await sharedPreferences!.setString("uid", currentUser.uid);
-          await sharedPreferences!.setString("email", snapshot.data()!["riderEmail"]);
-          await sharedPreferences!.setString("name", snapshot.data()!["riderName"]);
-          await sharedPreferences!.setString("photoUrl", snapshot.data()!["riderAvatarUrl"]);
-        });
+      if (snapshot.exists) {
+        await sharedPreferences!.setString("uid", currentUser.uid);
+        await sharedPreferences!
+            .setString("email", snapshot.data()!["riderEmail"]);
+        await sharedPreferences!
+            .setString("name", snapshot.data()!["riderName"]);
+        await sharedPreferences!
+            .setString("photoUrl", snapshot.data()!["riderAvatarUrl"]);
+        Navigator.pop(context);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const HomeScreen()));
+      } else {
+        firebaseAuth.signOut();
+        Navigator.pop(context);
+
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const AuthScreen()));
+        showDialog(
+            context: context,
+            builder: (c) {
+              return const ErrorDialog(
+                message: "no record found",
+              );
+            });
+      }
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
